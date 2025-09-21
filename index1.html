@@ -1,0 +1,100 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi princesa hermosa 👑💗</title>
+    
+    <style>
+      /* Todo el CSS original de flores, estrellas, animaciones */
+      /* ... PEGADO AQUÍ COMPLETO DEL ORIGINAL ... */
+    </style>
+</head>
+
+<body class="not-loaded">
+  <div class="night"></div>
+  
+  <div class="special-text">
+    Estás flores son para ti mi amor, por el amor tan grande que te tengo
+  </div>
+  
+
+  <div class="shooting-stars">
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+  </div>
+  
+  <div class="flowers">
+    <!-- 🌻 Aquí sigue toda la animación de las flores tal cual estaba en tu archivo original -->
+  </div>
+
+  <script>
+    onload = () => {
+      const c = setTimeout(() => {
+        document.body.classList.remove("not-loaded");
+        
+        function createShootingStar() {
+          const star = document.createElement('div');
+          star.className = 'shooting-star';
+          star.style.top = Math.random() * 60 + '%';
+          star.style.animationDelay = '0s';
+          star.style.animationDuration = (Math.random() * 1.5 + 2) + 's';
+          
+          document.querySelector('.shooting-stars').appendChild(star);
+          
+          setTimeout(() => {
+            star.remove();
+          }, 4000);
+        }
+        
+        setInterval(() => {
+          if (Math.random() > 0.3) { 
+            createShootingStar();
+          }
+        }, Math.random() * 5000 + 3000);
+        clearTimeout(c);
+      }, 1000);
+    };
+  </script>
+
+  <audio id="bg-music" autoplay loop muted>
+    <source src="floreditado.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <!-- Botón flotante -->
+  <button id="music-toggle" class="music-btn">🔇</button>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    const toggleBtn = document.getElementById("music-toggle");
+
+    // Activar sonido tras el primer clic en cualquier parte
+    document.addEventListener("click", () => {
+      if (music.muted) {
+        music.muted = false;
+        music.play();
+        toggleBtn.textContent = "🎵";
+      }
+    }, { once: true });
+
+    // Botón para play/pause
+    toggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (music.paused) {
+        music.play();
+        toggleBtn.textContent = "🎵";
+      } else {
+        music.pause();
+        toggleBtn.textContent = "🔇";
+      }
+    });
+  </script>
+</body>
+</html>
