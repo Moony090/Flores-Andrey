@@ -13,12 +13,7 @@
 
         <!-- Frente de la carta -->
         <div class="envelope-front">
-          <div class="postage-stamp">
-            <svg fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 300 300" xml:space="preserve">
-              <path d="M253.98,257.652c0-8.568,8.568-17.748,17.136-18.361c-1.224-4.895-1.224-10.402-0.611-15.299 ..."></path>
-            </svg>
-          </div>
+          <div class="postage-stamp"></div>
           <div class="address">
             <p><span>Para:</span> <span>Mi Princesa</span></p>
             <p><span>De:</span> <span>Tu amor</span></p>
@@ -41,34 +36,24 @@
       </div>
     </div>
 
-    <!-- 🌼 Botón debajo de la carta -->
-    <p></p>
-    <p></p>
+    <!-- Botón -->
     <button id="goToFlowers" class="letter-button"> Ver tus flores ->🌻</button>
   </div>
 
-  <!-- 🎵 Audio oculto -->
+  <!-- Música -->
   <audio id="bg-music" loop>
     <source src="flormusica.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
   </audio>
 
   <script>
     const envelope = document.querySelector(".envelope");
     const music = document.getElementById("bg-music");
 
-    // Abrir/cerrar carta + reproducir música en el primer click
     envelope.addEventListener("click", () => {
       envelope.classList.toggle("open");
-
-      if (music.paused) {
-        music.play().catch(err => {
-          console.log("El navegador bloqueó el autoplay hasta interacción:", err);
-        });
-      }
+      if (music.paused) music.play();
     });
 
-    // Redirigir al index1 al tocar el botón
     document.getElementById("goToFlowers").addEventListener("click", () => {
       window.location.href = "index1.html";
     });
