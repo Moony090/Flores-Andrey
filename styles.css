@@ -21,9 +21,9 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ------------------- SOBRE (CARTA) ------------------- */
 .envelope {
   --duration: 1000ms;
-
   --shadow-width: calc(var(--envelope-width) * 0.85);
   --shadow-blur: 15px;
 
@@ -56,8 +56,6 @@ body {
   --fold-delay-hover: calc(var(--duration) * .75);
 
   --front-font-size: 1rem;
-  --snowman-width: 50px;
-  --bells-width: 30px;
 
   position: relative;
   height: var(--envelope-height);
@@ -71,8 +69,6 @@ body {
     --envelope-width: 600px;
     --envelope-height: 350px;
     --letter-font-size: 1.6rem;
-    --snowman-width: 130px;
-    --bells-width: 60px;
     --front-font-size: 1.25rem;
   }
 }
@@ -94,7 +90,7 @@ body {
   filter: blur(var(--shadow-blur));
 }
 
-/* estado abierto al hacer click */
+/* estado abierto */
 .envelope.open {
   --envelope-transform: var(--envelope-transform-hover, 0deg);
   --evelope-rotate-delay: var(--evelope-rotate-delay-hover);
@@ -124,9 +120,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: var(--envelope-clr-bg);
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  perspective: 1000px;
   isolation: isolate;
 }
 
@@ -156,7 +150,6 @@ body {
 .envelope-back {
   transform: rotateY(180deg);
 }
-/* pliegues */
 .envelope-back::after {
   content: "";
   position: absolute;
@@ -220,15 +213,8 @@ body {
   object-fit: contain; 
 }
 
-.highlight {
-  display: block; 
-  margin-top: 10px; 
-  font-size: 1.8rem;  
-  font-weight: bold; 
-}
-
 .letter-button {
-  display: none; /* oculto hasta que la carta se abra */
+  display: none;
   margin-top: 15px;
   padding: 10px 20px;
   font-size: 16px;
@@ -239,46 +225,18 @@ body {
   color: #000;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.5s ease;
+  opacity: 0;
 }
-
 .letter-button:hover {
   transform: scale(1.1);
 }
-
-
-.button-container {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.letter-button {
-  display: none; /* oculto hasta que la carta se abra */
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #ff8c00, #ffd700);
-  color: #000;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-  transition: transform 0.2s ease, opacity 0.5s ease;
-  opacity: 0; /* para animación */
-}
-
-.letter-button {
-  display: none;
-  opacity: 0;
-}
-
 .envelope.open ~ .letter-button {
   display: inline-block;
   opacity: 1;
 }
 
-
-/*corazones lluvia*/
+/* corazones cayendo */
 .heart {
   position: fixed;
   top: -20px;
@@ -288,10 +246,91 @@ body {
   pointer-events: none;
   z-index: 9999;
 }
-
 @keyframes fall {
   to {
     transform: translateY(110vh);
     opacity: 0;
   }
 }
+
+/* ------------------- FLORES Y ESTRELLAS ------------------- */
+.night {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: -1;
+}
+
+.special-text {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffb6c1;
+  animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff69b4; }
+  to { text-shadow: 0 0 20px #ff1493; }
+}
+
+.shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(white, transparent);
+  animation: shooting 3s linear forwards;
+}
+@keyframes shooting {
+  from { transform: translateX(0) translateY(0) rotate(45deg); opacity: 1; }
+  to { transform: translateX(-200px) translateY(600px) rotate(45deg); opacity: 0; }
+}
+
+/* flores */
+.flowers {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.flowers::before {
+  content: "🌻🌸🌼🌹💐";
+  font-size: 3rem;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* botón música */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #fff;
+}
+
