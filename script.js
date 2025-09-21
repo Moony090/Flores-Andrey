@@ -7,18 +7,11 @@ window.onload = () => {
       star.className = 'shooting-star';
       star.style.top = Math.random() * 60 + '%';
       star.style.animationDuration = (Math.random() * 1.5 + 2) + 's';
-
       document.querySelector('.shooting-stars').appendChild(star);
-
-      setTimeout(() => {
-        star.remove();
-      }, 4000);
+      setTimeout(() => { star.remove(); }, 4000);
     }
 
-    setInterval(() => {
-      if (Math.random() > 0.3) createShootingStar();
-    }, Math.random() * 5000 + 3000);
-
+    setInterval(() => { if (Math.random() > 0.3) createShootingStar(); }, 4000);
     clearTimeout(c);
   }, 1000);
 };
@@ -45,4 +38,3 @@ toggleBtn.addEventListener("click", (e) => {
     toggleBtn.textContent = "🔇";
   }
 });
-
